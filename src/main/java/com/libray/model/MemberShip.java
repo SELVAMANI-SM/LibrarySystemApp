@@ -6,24 +6,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.dao.ConnectionUtil;
 import com.libray.dao.MemberUpdate;
 import com.libray.logic.MemberCheck;
 
 public class MemberShip {
+	private static Logger log= LogManager.getLogger(MemberShip.class);
 	public static void membershipregister() throws Exception
 {
 	Scanner sc = new Scanner(System.in);
-	System.out.println("Enter Your Name : ");
+	log.info("Enter Your Name : ");
 	String memberName=sc.nextLine();
-	System.out.println("Enter Your Email ");
+	log.info("Enter Your Email ");
 	String memberEmail=sc.next();
-	System.out.println("Enter Your Password  ");
+	log.info("Enter Your Password  ");
 	String memberPassWord=sc.next();
-	System.out.println("Enter Your Mobile Number  ");
+	log.info("Enter Your Mobile Number  ");
 	String memberMobile=sc.next();
 	int num= (int)(Math.random()*(5000-8000+1)+5000);
-	System.out.println("Enter Your UserId here it is  "+num);
+	log.info("Enter Your UserId here it is  "+num);
 	int  memberId=sc.nextInt();
 	Registration member = new Registration();
 	member.setMemberName(memberName);
@@ -38,10 +42,10 @@ public class MemberShip {
 	}
 	catch(Exception e)
 	{
-		System.out.println("Once again registered");
+		log.info("Once again registered");
 		
 		count++;
-		System.out.println("ERROR : " +e.getMessage());
+		log.error("ERROR : " +e.getMessage());
 		membershipregister();
 		
 	}
@@ -54,8 +58,8 @@ public class MemberShip {
 }
 public static void Memberlogin() {
 	Scanner sc = new Scanner(System.in);
-	System.out.println("1. login MemberShip");
-	System.out.println("2. login user");
+	log.info("1. login MemberShip");
+	log.info("2. login user");
 	int number = sc.nextInt();
 	if(number==1)
 	{
@@ -69,18 +73,18 @@ public static void Memberlogin() {
 public static void memberCheck() {
 	Scanner sc = new Scanner(System.in);
 	
-	System.out.println("Enter your Gmail / MemberShip_id");
+	log.info("Enter your Gmail ");
 	String UserGmail = sc.next();
-	System.out.println("Enter your Password ");
+	log.info("Enter your Password ");
 	String UserPassword = sc.next();
 	try {
 		loginValidator(UserGmail, UserPassword);
 	}
 	catch(Exception e)
 	{
-		System.out.println("Enter correctly");
+		log.info("Enter correctly");
 		
-		System.out.println( e.getMessage());
+		log.error( e.getMessage());
 		memberCheck();
 		
 	}
@@ -109,14 +113,14 @@ memberId=rs.getInt("member_Id");
 number=rs.getString("member_Id");
 
 }
-if(mail==null||number==null)
+if(mail==null)
 {
 throw new Exception("No Records Found");
 }
 
 else if(Password.equals(password))
 {
-	System.out.println("Successfully login");
+	log.info("Successfully login");
 	MemberProcess.Memberbook(memberId);
 	
 }

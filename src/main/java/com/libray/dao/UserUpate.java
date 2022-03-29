@@ -3,9 +3,13 @@ package com.libray.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.model.Registration;
 
 public class UserUpate {
+	private static Logger log= LogManager.getLogger(UserUpate.class);
 	public static void InsertUser(Registration user) throws Exception {
 		Connection connection;
 		PreparedStatement statement;
@@ -21,7 +25,7 @@ public class UserUpate {
 		statement.setInt(5, user.getUserId());
 		
 		int rows = statement.executeUpdate();
-		System.out.println("No of rows inserted:"+rows);
+		log.info("No of rows inserted:"+rows);
 		
 		}
 	}

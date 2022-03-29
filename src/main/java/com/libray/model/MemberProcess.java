@@ -2,27 +2,31 @@ package com.libray.model;
 
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.dao.MemberBookProcess;
 
 public class MemberProcess {
+	private static Logger log= LogManager.getLogger(MemberProcess.class);
 	public static void Memberbook(int id) throws Exception
 	{
-		System.out.println("1. Display all Books");
-		System.out.println("2. Search book by Author");
-		System.out.println("3. search book by book Name");
-		System.out.println("4. serach book by dept");
-		System.out.println("5. take Book");
-		System.out.println("6. return Book");
-		System.out.println("7. Take E-books");
-		System.out.println("8. Take books Tutorial");
-		System.out.println("9. display Todays Indian Express news");
-		System.out.println("10. display Todays Hindu news");
-		System.out.println("11. display Todays Dinamalar news");
-		System.out.println("12. display Indian Expression news find by date");
-		System.out.println("13. display hindu news find by date");
-		System.out.println("14. display Dinamalar news find by date");
-		System.out.println("15. Display how many book taken and how many want to return");
-		System.out.println("16. logout");
+		log.info("1. Display all Books");
+		log.info("2. Search book by Author");
+		log.info("3. search book by book Name");
+		log.info("4. serach book by dept");
+		log.info("5. Take Book");
+		log.info("6. Return Book");
+		log.info("7. Take E-books");
+		log.info("8. Take books Tutorial");
+		log.info("9. display Todays Indian Express news");
+		log.info("10. display Todays Hindu news");
+		log.info("11. display Todays Dinamalar news");
+		log.info("12. display Indian Expression news find by date");
+		log.info("13. display hindu news find by date");
+		log.info("14. display Dinamalar news find by date");
+		log.info("15. Display how many book taken and how many want to return");
+		log.info("16. logout");
 		int number2=id;
 		Scanner sc = new Scanner(System.in);
 		int number = sc.nextInt();
@@ -103,7 +107,7 @@ public class MemberProcess {
 		}
 		else 
 		{
-			System.out.println("Your sucessfully log out");
+			log.info("Your sucessfully log out");
 		}
 		
 	}

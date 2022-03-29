@@ -6,27 +6,33 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
+
 public class AdminBookProcess {
+	private static Logger log= LogManager.getLogger(AdminBookProcess.class);
 	public static void add() throws Exception {
 		@SuppressWarnings("resource")
 		Scanner rm = new Scanner(System.in);
-		System.out.println("Enter Book_id");
+		log.info("Enter Book_id");
 		int bookIdNumber = rm.nextInt();
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter BooksName");
+		log.info("Enter BooksName");
 		String bookName = sc.nextLine();
-		System.out.println("Enter dept");
+		log.info("Enter dept");
 		String deptment = sc.nextLine();
-		// System.out.println("Enter Student_Staff");
+		// log.info("Enter Student_Staff");
 		// String studentsStaff = sc.nextLine();
-		System.out.println("Enter Author");
+		log.info("Enter Author");
 		String suthors = sc.nextLine();
-		System.out.println("Enter Status");
+		log.info("Enter Status");
 		String specify = sc.nextLine();
-		System.out.println("Enter Website Link ");
+		log.info("Enter Website Link ");
 		String website = sc.nextLine();
-		System.out.println("Enter VIdeo link ");
+		log.info("Enter VIdeo link ");
 		String video = sc.nextLine();
 
 		String query = "insert into books_library (Book_id,Books_Name,Dept,Author,Status_Book,reference_Website,Reference_Video) values ('"+bookIdNumber+"','"
@@ -41,7 +47,7 @@ public class AdminBookProcess {
 	}
 	public static void deleteBookId() throws Exception
 	{
-		System.out.println("Enter book id ");
+		log.info("Enter book id ");
 		Scanner sc = new Scanner(System.in);
 		int number = sc.nextInt();
 		Connection connection;
@@ -52,7 +58,7 @@ public class AdminBookProcess {
 	}
 	public static void DeleteBookAuthor() throws Exception
 	{
-	System.out.println("Enter book Author ");
+	log.info("Enter book Author ");
 	Scanner sc = new Scanner(System.in);
 	String BookAuthor = sc.nextLine();
 	Connection connection;
@@ -81,7 +87,7 @@ public class AdminBookProcess {
 		Statement st = connection.createStatement();
 		ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 		while (rs.next()) {
-				System.out.println(rs.getString("member_id")+ "\t" +rs.getString("book_id") + "\t" + rs.getString("book_taken_date")+ "\t" + rs.getString("book_return_date")+ "\t" + rs.getString("book_status"));
+				log.info(rs.getString("member_id")+ "\t" +rs.getString("book_id") + "\t" + rs.getString("book_taken_date")+ "\t" + rs.getString("book_return_date")+ "\t" + rs.getString("book_status"));
 
 			}
 
@@ -95,7 +101,7 @@ public class AdminBookProcess {
 		Statement st = connection.createStatement();
 		ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 		while (rs.next()) {
-				System.out.println(rs.getString("user_id")+ "\t" +rs.getString("book_id") + "\t" + rs.getString("book_taken_date")+ "\t" + rs.getString("book_return_date")+ "\t" + rs.getString("book_status"));
+				log.info(rs.getString("user_id")+ "\t" +rs.getString("book_id") + "\t" + rs.getString("book_taken_date")+ "\t" + rs.getString("book_return_date")+ "\t" + rs.getString("book_status"));
 
 			}
 
@@ -104,7 +110,7 @@ public static void NewsIndianPaper() throws Exception {
 		
 		Scanner sc=new Scanner(System.in);
 		LocalDate date=LocalDate.now();
-			System.out.println("Enter Indain_news");
+			log.info("Enter Indain_news");
 			String indianNews = sc.nextLine();
 		
 
@@ -120,7 +126,7 @@ public static void NewsHinduPaper() throws Exception {
 	Scanner sc=new Scanner(System.in);
 	LocalDate date=LocalDate.now();
 		
-		System.out.println("Enter Hindu_news E- paper");
+		log.info("Enter Hindu_news E- paper");
 		String hinduNews = sc.nextLine();
 		
 		String query = "insert into Daily_News_Papers(News_Date,Hindu) values ('"+date+"','" + hinduNews + "')";
@@ -135,7 +141,7 @@ public static void NewsDinamalarPaper() throws Exception {
 	Scanner sc=new Scanner(System.in);
 	LocalDate date=LocalDate.now();
 
-		System.out.println("Enter Dinamalar news E-paper ");
+		log.info("Enter Dinamalar news E-paper ");
 		String Dinamalar = sc.nextLine();
 
 		String query = "insert into Daily_News_Papers(News_Date,Dinamalar) values ('"+date+"','" + Dinamalar + "')";

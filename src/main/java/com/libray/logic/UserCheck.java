@@ -1,8 +1,12 @@
 package com.libray.logic;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.model.Registration;
 
 public class UserCheck {
+	private static Logger log= LogManager.getLogger(UserCheck.class);
 	static int count=0;
 	
 	public static void UserValidation(Registration user) throws Exception
@@ -85,7 +89,7 @@ public class UserCheck {
 	
 	if(count==5)
 	{
-		System.out.println("Registration is Completed .....  Welcome");
+		log.info("Registration is Completed .....  Welcome");
 		
 		
 	}

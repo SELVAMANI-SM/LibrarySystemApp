@@ -1,0 +1,5 @@
+2022-03-23 16:16:35.012[main]INFO  com.library.test.LibraryTest- Welcome.....!! to   LIBRARY
+2022-03-23 16:16:35.018[main]INFO  com.library.test.LibraryTest- 1--> Register / Sign up
+2022-03-23 16:16:35.019[main]INFO  com.library.test.LibraryTest- 2--> Login / sign in
+2022-03-23 16:16:35.019[main]INFO  com.library.test.LibraryTest- 3--> Admin / sign in
+2022-03-23 16:16:35.019[main]INFO  com.library.test.LibraryTest- 4--> Exit

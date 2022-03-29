@@ -6,7 +6,11 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class MemberBookProcess {
+	private static Logger log= LogManager.getLogger(MemberBookProcess.class);
 	public static void bookprocessMember() throws Exception {
 		Scanner sc = new Scanner(System.in);
 		Connection connection;
@@ -17,12 +21,12 @@ public class MemberBookProcess {
 		Statement stm = connection.createStatement();
 		ResultSet rsm = ((java.sql.Statement) stm).executeQuery(query1);
 		while (rsm.next()) {
-			System.out.println(rsm.getString("Book_id")+ "\t" + rsm.getString("Books_Name")+"                       ------->          \t" +rsm.getString("Status_book"));
+			log.info(rsm.getString("Book_id")+ "\t" + rsm.getString("Books_Name")+"                       ------->          \t" +rsm.getString("Status_book"));
 
 		}
 	}
 	public static void Author() throws Exception {
-		System.out.println("Enter book Author ");
+		log.info("Enter book Author ");
 		Scanner sc = new Scanner(System.in);
 		String BookAuthor = sc.nextLine();
 		Connection connection;
@@ -31,14 +35,14 @@ public class MemberBookProcess {
 		Statement stm = connection.createStatement();
 		ResultSet rsm = ((java.sql.Statement) stm).executeQuery(query2);
 		while (rsm.next()) {
-			System.out.println(rsm.getString("Book_id")+  " \t" +rsm.getString("Author"));
+			log.info(rsm.getString("Book_id")+  " \t" +rsm.getString("Author"));
 
 	}
 	}
 	public static void BookName() throws Exception
 	{
 		
-			System.out.println("Enter book Name ");
+			log.info("Enter book Name ");
 			Scanner sc = new Scanner(System.in);
 			String BookAuthor = sc.nextLine();
 			Connection connection;
@@ -47,7 +51,7 @@ public class MemberBookProcess {
 			Statement stm = connection.createStatement();
 			ResultSet rsm = ((java.sql.Statement) stm).executeQuery(query2);
 			while (rsm.next()) {
-				System.out.println(rsm.getString("Book_id")+ "\t" + rsm.getString("Books_Name"));
+				log.info(rsm.getString("Book_id")+ "\t" + rsm.getString("Books_Name"));
 
 		}
 		}
@@ -57,7 +61,7 @@ public class MemberBookProcess {
 		Connection connection;
 		connection=ConnectionUtil.sqlConnection();
 		
-		System.out.println("Enter dept like EEE ");
+		log.info("Enter dept like EEE ");
 		Scanner sc = new Scanner(System.in);
 		String BookAuthor = sc.nextLine();
 		
@@ -65,7 +69,7 @@ public class MemberBookProcess {
 		Statement stm = connection.createStatement();
 		ResultSet rsm = ((java.sql.Statement) stm).executeQuery(query1);
 		while (rsm.next()) {
-			System.out.println(rsm.getString("Book_id")+ "\t" + rsm.getString("Books_Name")+"                       ------->          \t" +rsm.getString("Dept"));
+			log.info(rsm.getString("Book_id")+ "\t" + rsm.getString("Books_Name")+"                       ------->          \t" +rsm.getString("Dept"));
 
 	}
 	}
@@ -80,13 +84,13 @@ public class MemberBookProcess {
 		Connection connection;
 		connection=ConnectionUtil.sqlConnection();
 		
-		System.out.println("Enter book id");
+		log.info("Enter book id");
 		int name1 = sc.nextInt();
 		String query1="UPDATE books_library SET Status_Book='"+name+"' WHERE Book_id = '"+name1+"'" ;
 		
 		Statement stm = connection.createStatement();
 		stm.executeUpdate(query1);
-		System.out.println("yeah success fully taken");
+		log.info("yeah success fully taken");
 		addId(student,name1);
 		
 		}
@@ -110,14 +114,14 @@ public class MemberBookProcess {
 		Scanner sc = new Scanner(System.in);
 		
 		
-		System.out.println("Enter book_id ");
+		log.info("Enter book_id ");
 		int name1 = sc.nextInt();
 		String query2="UPDATE books_library SET Status_Book='"+name+"' WHERE Book_id = '"+name1+"'" ;
 		Connection connection;
 		connection=ConnectionUtil.sqlConnection();
 		Statement stm = connection.createStatement();
 		stm.executeUpdate(query2);
-		System.out.println("yeah success fully Return");
+		log.info("yeah success fully Return");
 		Return(name1);
 	}
 		public static void Return(int name1) throws Exception
@@ -135,7 +139,7 @@ public class MemberBookProcess {
 		public static void TodayIndianNews() throws Exception
 		{
 			//Scanner sc = new Scanner(System.in);
-			//System.out.println("Enter book id");
+			//log.info("Enter book id");
 			LocalDate number1= LocalDate.now();
 			String value="null";
 			Connection connection;
@@ -144,15 +148,15 @@ public class MemberBookProcess {
 			Statement st = connection.createStatement();
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
-				System.out.println("Indian Expression  -->"+rs.getString("Indian_Express"));
+				log.info("Indian Expression  -->"+rs.getString("Indian_Express"));
 			
 	}
-			System.out.println("Take Today newsPapers");
+			log.info("Take Today newsPapers");
 	}
 		public static void TodayHinduNews() throws Exception
 		{
 			//Scanner sc = new Scanner(System.in);
-			//System.out.println("Enter book id");
+			//log.info("Enter book id");
 			LocalDate number1= LocalDate.now();
 			String value="null";
 			Connection connection;
@@ -162,15 +166,15 @@ public class MemberBookProcess {
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
 				
-				System.out.println("The Hindu  -->"+rs.getString("Hindu"));
+				log.info("The Hindu  -->"+rs.getString("Hindu"));
 				
 	}
-			System.out.println("Take Today newsPapers");
+			log.info("Take Today newsPapers");
 	}
 		public static void TodayDinamalarNews() throws Exception
 		{
 			//Scanner sc = new Scanner(System.in);
-			//System.out.println("Enter book id");
+			//log.info("Enter book id");
 			LocalDate number1= LocalDate.now();
 			String value="null";
 			Connection connection;
@@ -180,14 +184,14 @@ public class MemberBookProcess {
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
 			
-				System.out.println("Dinamalar  -->"+rs.getString("Dinamalar"));
+				log.info("Dinamalar  -->"+rs.getString("Dinamalar"));
 	}
-			System.out.println("Take Today newsPapers");
+			log.info("Take Today newsPapers");
 	}
 		public static void DateIndianNews() throws Exception
 		{
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Enter date like ' 2022-03-13 --> year-mon-day' ");
+			log.info("Enter date like ' 2022-03-13 --> year-mon-day' ");
 			String number1=sc.next();
 			Connection connection;
 			String value="null";
@@ -196,15 +200,15 @@ public class MemberBookProcess {
 			Statement st = connection.createStatement();
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
-				System.out.println("Indian Expression  -->"+rs.getString("Indian_Express"));
+				log.info("Indian Expression  -->"+rs.getString("Indian_Express"));
 		
 	}
-			System.out.println("Take Today newsPapers");
+			log.info("Take Today newsPapers");
 	}
 		public static void DateHinduNews() throws Exception
 		{
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Enter date like ' 2022-03-13 --> year-mon-day' ");
+			log.info("Enter date like ' 2022-03-13 --> year-mon-day' ");
 			String number1=sc.next();
 			Connection connection;
 			String value="null";
@@ -214,15 +218,15 @@ public class MemberBookProcess {
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
 				
-				System.out.println("The Hindu  -->"+rs.getString("Hindu"));
+				log.info("The Hindu  -->"+rs.getString("Hindu"));
 			
 	}
-			System.out.println("Take Today newsPapers");
+			log.info("Take Today newsPapers");
 	}
 		public static void DateDinamalarNews() throws Exception
 		{
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Enter date like ' 2022-03-13 --> year-mon-day' ");
+			log.info("Enter date like ' 2022-03-13 --> year-mon-day' ");
 			String number1=sc.next();
 			Connection connection;
 			String value="null";
@@ -232,9 +236,9 @@ public class MemberBookProcess {
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
 				
-				System.out.println("Dinamalar  -->"+rs.getString("Dinamalar"));
+				log.info("Dinamalar  -->"+rs.getString("Dinamalar"));
 	}
-			System.out.println("Take Today newsPapers");
+			log.info("Take Today newsPapers");
 	}
 		public static void Memberprocess(int faculty) throws Exception{
 
@@ -251,9 +255,9 @@ public class MemberBookProcess {
 			{
 				count++;
 			}
-			System.out.println("You have  taken "+ count+" book");
+			log.info("You have  taken "+ count+" book");
 			
-			System.out.println("You need to return "+ count +" book");
+			log.info("You need to return "+ count +" book");
 			connect(faculty);
 		}
 		public static void connect(int id) throws Exception
@@ -266,7 +270,7 @@ public class MemberBookProcess {
 			Statement st = connection.createStatement();
 			ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 			while (rs.next()) {
-					System.out.println(rs.getString("member_id")+ "\t" +rs.getString("book_id") + "\t" + rs.getString("book_taken_date")+ "\t" + rs.getString("book_return_date")+ "\t" + rs.getString("book_status"));
+					log.info(rs.getString("member_id")+ "\t" +rs.getString("book_id") + "\t" + rs.getString("book_taken_date")+ "\t" + rs.getString("book_return_date")+ "\t" + rs.getString("book_status"));
 
 				}
 
@@ -275,7 +279,7 @@ public class MemberBookProcess {
 		{
 				@SuppressWarnings("resource")
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Enter booK_id for E-book ");
+				log.info("Enter booK_id for E-book ");
 				int  number1=sc.nextInt();
 				Connection connection;
 				connection=ConnectionUtil.sqlConnection();
@@ -283,17 +287,17 @@ public class MemberBookProcess {
 				Statement stm = connection.createStatement();
 				ResultSet rst = ((java.sql.Statement) stm).executeQuery(query1);
 				while (rst.next()) {
-					System.out.println(rst.getString("Reference_Website"));
+					log.info(rst.getString("Reference_Website"));
 				
 				}
-				System.out.println("Take your E-book");
+				log.info("Take your E-book");
 		}
 		public static void ReferenceVideo() throws Exception 
 		{
 		
 				@SuppressWarnings("resource")
 				Scanner sc = new Scanner(System.in);
-				System.out.println("Enter book id");
+				log.info("Enter book id");
 				int number1=sc.nextInt();
 				Connection connection;
 				connection=ConnectionUtil.sqlConnection();
@@ -301,9 +305,9 @@ public class MemberBookProcess {
 				Statement st = connection.createStatement();
 				ResultSet rs = ((java.sql.Statement) st).executeQuery(query1);
 				while (rs.next()) {
-					System.out.println(rs.getString("Reference_Video"));
+					log.info(rs.getString("Reference_Video"));
 		}
-				System.out.println("Take your video tutorial");
+				log.info("Take your video tutorial");
 		}
 	
 	

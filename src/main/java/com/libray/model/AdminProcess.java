@@ -2,23 +2,27 @@ package com.libray.model;
 
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.dao.AdminBookProcess;
 import com.libray.dao.MemberBookProcess;
 
 public class AdminProcess {
+	private static Logger log= LogManager.getLogger(AdminProcess.class);
 	public static void AdminProcessBook() throws Exception
 	{
-		System.out.println("1. Add books");
-		System.out.println("2. Delete by bookId");
-		System.out.println("3. Delete by book Author ");
-		System.out.println("4. Delete by Dept");
-		System.out.println("5. AddNews Indian Expresion E-Paper ");
-		System.out.println("6. AddNews the Hindu E-paper");
-		System.out.println("7. AddNews Dinamalar E-paper");
-		System.out.println("8. Show User Process");
-		System.out.println("9. Show MemberShip process");
-		System.out.println("10. Display all books");
-		System.out.println("11. logout");
+		log.info("1. Add books");
+		log.info("2. Delete by bookId");
+		log.info("3. Delete by book Author ");
+		log.info("4. Delete by Dept");
+		log.info("5. AddNews Indian Expresion E-Paper ");
+		log.info("6. AddNews the Hindu E-paper");
+		log.info("7. AddNews Dinamalar E-paper");
+		log.info("8. Show User Process");
+		log.info("9. Show MemberShip process");
+		log.info("10. Display all books");
+		log.info("11. logout");
 	
 		Scanner sc = new Scanner(System.in);
 		int number = sc.nextInt();
@@ -74,7 +78,7 @@ public class AdminProcess {
 		}
 		else
 		{
-			System.out.println("Your sucessfully log out");
+			log.info("Your sucessfully log out");
 		}
 	}
 	}

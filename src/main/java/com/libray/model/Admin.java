@@ -5,22 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.dao.ConnectionUtil;
 
 public class Admin {
+	private static Logger log= LogManager.getLogger(Admin.class);
 	public static void adminlogin() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter your Gmail / Admin_id");
+		log.info("Enter your Gmail / Admin_id");
 		String UserGmail = sc.next();
-		System.out.println("Enter your Password ");
+		log.info("Enter your Password ");
 		String UserPassword = sc.next();
 		try {
 			MemberValidator(UserGmail, UserPassword);
 		}
 		catch(Exception e)
 		{
-			System.out.println("Enter correctly");
-			System.out.println( e.getMessage());
+			log.info("Enter correctly");
+			log.error( e.getMessage());
 			adminlogin();
 			
 		}
@@ -55,7 +59,7 @@ public class Admin {
 	
 	else if(Password.equals(password))
 	{
-		System.out.println("Successfully login");
+		log.info("Successfully login");
 		 AdminProcess.AdminProcessBook();
 		
 	}

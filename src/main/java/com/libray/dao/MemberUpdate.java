@@ -1,11 +1,16 @@
 package com.libray.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.libray.model.Registration;
 
 public class MemberUpdate {
+	private static Logger log= LogManager.getLogger(MemberUpdate.class);
 	public static void InsertMember(Registration member) throws Exception {
 		Connection connection;
 		PreparedStatement statement;
@@ -21,7 +26,7 @@ public class MemberUpdate {
 		statement.setInt(5, member.getMemberId());
 		
 		int rows = statement.executeUpdate();
-		System.out.println("No of rows inserted:"+rows);
+		log.info("No of rows inserted:"+rows);
 		
 		}
 }

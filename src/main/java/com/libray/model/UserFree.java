@@ -4,18 +4,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.libray.dao.ConnectionUtil;
 import com.libray.dao.UserUpate;
 import com.libray.logic.UserCheck;
 
 public class UserFree {
+	private static Logger log= LogManager.getLogger(UserFree.class);
 	
 	public static void UserFreeRegister() throws Exception
 	{
 	
 	Scanner sc = new Scanner(System.in);
-	System.out.println("1. User_free");
-	System.out.println("2. Membership");
+	log.info("1. User_free");
+	log.info("2. Membership");
 	int number = sc.nextInt();
 	if(number == 1)
 	{
@@ -27,7 +31,7 @@ public class UserFree {
 	}
 	else 
 	{
-		System.out.println("Enter valid Option");
+		log.warn("Enter valid Option");
 		UserFreeRegister();
 	}
 	
@@ -35,16 +39,16 @@ public class UserFree {
 	public static void RegisterUser() throws Exception
 	{
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Your Name : ");
+		log.info("Enter Your Name : ");
 		String userName=sc.nextLine();
-		System.out.println("Enter Your Email ");
+		log.info("Enter Your Email ");
 		String userEmail=sc.next();
-		System.out.println("Enter Your Password  ");
+		log.info("Enter Your Password  ");
 		String userPassword=sc.next();
-		System.out.println("Enter Your Mobile Number  ");
+		log.info("Enter Your Mobile Number  ");
 		String userMobile=sc.next();
 		int num= (int)(Math.random()*(5000-8000+1)+5000);
-		System.out.println("Enter Your UserId here it is  "+num);
+		log.info("Enter Your UserId here it is  "+num);
 		int userId=sc.nextInt();
 		Registration user = new Registration();
 		user.setUserName(userName);
@@ -59,9 +63,9 @@ public class UserFree {
 		}
 		catch(Exception e)
 		{
-			System.out.println("Once again registered");
+			log.info("Once again registered");
 			count++;
-			System.out.println("ERROR : " +e.getMessage());
+			log.error("ERROR : " +e.getMessage());
 			RegisterUser();
 		}
 		if(count==0)
@@ -75,17 +79,17 @@ public class UserFree {
 	}
 	public static void userlogin() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter your Gmail / User_id");
+		log.info("Enter your Gmail ");
 		String UserGmail = sc.next();
-		System.out.println("Enter your Password ");
+		log.info("Enter your Password ");
 		String UserPassword = sc.next();
 		try {
 			loginValidator(UserGmail, UserPassword);
 		}
 		catch(Exception e)
 		{
-			System.out.println("Enter correctly");
-			System.out.println( e.getMessage());
+			log.info("Enter correctly");
+			log.info( e.getMessage());
 			userlogin();
 			
 		}
@@ -113,14 +117,14 @@ public class UserFree {
 	number=rs.getString("user_Id");
 	
 	}
-	if(mail==null||number==null)
+	if(mail==null)
 	{
 	throw new Exception("No Records Found");
 	}
 	
 	else if(Password.equals(password))
 	{
-		System.out.println("Successfully login");
+		log.info("Successfully login");
 		UserProcess.userbook(user_Id);
 		
 		
